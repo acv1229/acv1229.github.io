@@ -32,12 +32,29 @@
   .nav-links a { font-size: .72rem; letter-spacing: .15em; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: color .2s; }
   .nav-links a:hover { color: var(--accent); }
 
+  /* HERO */
   #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 8rem 4rem 4rem; position: relative; overflow: hidden; }
   .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,245,196,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,245,196,.03) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse at 30% 50%, black 40%, transparent 80%); }
   .hero-glow { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(0,245,196,.07) 0%, transparent 70%); top: -100px; right: -100px; pointer-events: none; }
   .hero-glow2 { position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,170,255,.05) 0%, transparent 70%); bottom: 0; left: 30%; pointer-events: none; }
+
+  .hero-layout { display: flex; align-items: center; justify-content: space-between; gap: 4rem; flex-wrap: wrap; position: relative; z-index: 2; }
+  .hero-text { flex: 1; min-width: 320px; }
+
+  .hero-image {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(0,245,196,.2);
+    box-shadow: 0 0 40px rgba(0,245,196,.08);
+    flex: 0 0 auto;
+  }
+  .hero-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
   .hero-tag { font-size: .7rem; letter-spacing: .25em; color: var(--accent); text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: .8rem; opacity: 0; animation: fadeUp .8s .2s forwards; }
   .hero-tag::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); }
+
   h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(3.5rem,9vw,8rem); line-height: .95; letter-spacing: -.02em; opacity: 0; animation: fadeUp .8s .4s forwards; }
   h1 .name-highlight { display: block; background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .hero-sub { margin-top: 2rem; max-width: 540px; font-size: .9rem; line-height: 1.8; color: var(--muted); opacity: 0; animation: fadeUp .8s .6s forwards; }
@@ -145,6 +162,8 @@
     h1 { font-size: clamp(2.8rem,12vw,5rem); }
     footer { flex-direction: column; gap: .5rem; text-align: center; }
     .exp-card { padding: 2rem; flex-direction: column; align-items: flex-start; }
+    .hero-layout { flex-direction: column; text-align: center; gap: 2.5rem; }
+    .hero-image { width: 200px; height: 200px; }
   }
 </style>
 </head>
@@ -168,17 +187,27 @@
   <div class="hero-grid-bg"></div>
   <div class="hero-glow"></div>
   <div class="hero-glow2"></div>
-  <div class="hero-tag">Data Scientist · NYU CDS · MS Graduating Spring 2026</div>
-  <h1>
-    Acey
-    <span class="name-highlight">Vogelstein.</span>
-  </h1>
-  <p class="hero-sub">
-    MS Data Science @ NYU. 3+ years of work experience. I leverage data to optimize products and solve real-world challenges. I love experimenting with innovative solutions.
-  </p>
-  <div class="hero-cta">
-    <a href="#projects" class="btn btn-primary">View Projects</a>
-    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+
+  <div class="hero-layout">
+    <div class="hero-text">
+      <div class="hero-tag">Data Scientist · NYU CDS · MS Graduating Spring 2026</div>
+      <h1>
+        Acey
+        <span class="name-highlight">Vogelstein.</span>
+      </h1>
+      <p class="hero-sub">
+        MS Data Science @ NYU. 3+ years of work experience. I leverage data to optimize products and solve real-world challenges. I love experimenting with innovative solutions.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+
+    <!-- HEADSHOT: put your image at /images/headshot.jpg (or change the src below) -->
+    <div class="hero-image reveal">
+      <img src="images/headshot.jpg" alt="Acey Vogelstein headshot">
+    </div>
   </div>
 </section>
 
@@ -236,11 +265,9 @@
       <div class="project-title">Transformers for Survival Analysis (TabPFN Fine-tuning)</div>
       <p class="project-desc">Investigated whether TabPFN generalizes to healthcare time-to-event prediction. Generated 10,000 synthetic survival datasets spanning diverse hazard functions and censoring regimes. Fine-tuned via meta-learning, improving probabilistic calibration (Integrated Brier Score) in low-data regimes. Benchmarked against CoxPH, RSF, DeepSurv, DeepHit, SurvTRACE on METABRIC and SUPPORT2.</p>
 
-      <!-- INSERTED: PDF link -->
       <div class="project-actions">
         <a class="btn-mini" href="pdf/TabPFN_Survival.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
       </div>
-      <!-- END INSERT -->
 
       <div class="project-stack">
         <span class="project-tech">Python</span>
@@ -258,11 +285,9 @@
       <div class="project-title">Distribution-Aware Companding Quantization of LLMs (DACQ)</div>
       <p class="project-desc">Novel post-training quantization framework for LLMs. Showed transformer weights follow logistic distributions across 192 LLaMA and 168 Qwen submodules. Applied CDF-based companding quantization, consistently reducing weight reconstruction error vs. AWQ baseline. Achieved 19% throughput gain over FP16 on Llama3-8B. Evaluated on NYU A100 GPUs.</p>
 
-      <!-- INSERTED: PDF link -->
       <div class="project-actions">
         <a class="btn-mini" href="pdf/DACQ.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
       </div>
-      <!-- END INSERT -->
 
       <div class="project-stack">
         <span class="project-tech">PyTorch</span>
@@ -310,11 +335,9 @@
       <div class="project-title">Thematic Analysis of Patient Feedback (NLP)</div>
       <p class="project-desc">Analyzed 6,058 text-based patient reviews from a London GP network. Applied BERT-based sentiment classification, elastic net logistic regression, LDA topic modeling, and decision trees to surface key themes driving positive and negative hospital experiences.</p>
 
-      <!-- INSERTED: PDF link -->
       <div class="project-actions">
         <a class="btn-mini" href="pdf/GP_Reviews_NLP.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
       </div>
-      <!-- END INSERT -->
 
       <div class="project-stack">
         <span class="project-tech">Python</span>
@@ -332,11 +355,9 @@
       <div class="project-title">Seoul Bike Sharing Demand Forecasting</div>
       <p class="project-desc">Modeled 8,760 hourly observations from the UCI Seoul Bike Sharing dataset. Compared linear regression, elastic net, decision tree, and random forest in R. Random forest achieved lowest test MSE — a 59% reduction vs. linear regression. Top features: hour of day, temperature, humidity.</p>
 
-      <!-- INSERTED: PDF link -->
       <div class="project-actions">
         <a class="btn-mini" href="pdf/Seoul_Bike.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
       </div>
-      <!-- END INSERT -->
 
       <div class="project-stack">
         <span class="project-tech">R</span>
@@ -349,65 +370,61 @@
     </div>
 
     <div class="project-card reveal">
-    <div class="project-num">07 — Industry Data Product</div>
-    <span class="project-badge">Major League Baseball (MLB) · Summer 2025</span>
-    <div class="project-title">Do Not Contact Automation Platform</div>
-    <p class="project-desc">
-      Built a Streamlit data product to automate MLB’s “Do Not Contact” workflow (unsubscribing fans from email communication) using SQL + internal APIs, with centralized BigQuery
-      audit logging for compliance traceability. Reduced several hours/week of manual coordination, improved reliability, and enabled downstream
-      reporting via event-level audit tables and QA checks.
-    </p>
-    <div class="project-stack">
-      <span class="project-tech">Python</span>
-      <span class="project-tech">Streamlit</span>
-      <span class="project-tech">SQL</span>
-      <span class="project-tech">APIs</span>
-      <span class="project-tech">BigQuery</span>
-      <span class="project-tech">Audit Logging</span>
+      <div class="project-num">07 — Industry Data Product</div>
+      <span class="project-badge">Major League Baseball (MLB) · Summer 2025</span>
+      <div class="project-title">Do Not Contact Automation Platform</div>
+      <p class="project-desc">
+        Built a Streamlit data product to automate MLB’s “Do Not Contact” workflow (unsubscribing fans from email communication) using SQL + internal APIs, with centralized BigQuery
+        audit logging for compliance traceability. Reduced several hours/week of manual coordination, improved reliability, and enabled downstream
+        reporting via event-level audit tables and QA checks.
+      </p>
+      <div class="project-stack">
+        <span class="project-tech">Python</span>
+        <span class="project-tech">Streamlit</span>
+        <span class="project-tech">SQL</span>
+        <span class="project-tech">APIs</span>
+        <span class="project-tech">BigQuery</span>
+        <span class="project-tech">Audit Logging</span>
+      </div>
     </div>
-  </div>
-  
-  <div class="project-card reveal">
-    <div class="project-num">08 — Applied AI System</div>
-    <span class="project-badge">GreenAleph Sports · 2024–2025</span>
-    <div class="project-title">Bet Slip OCR Pipeline (GPT Vision + RDS)</div>
-    <p class="project-desc">
-      Engineered an OCR / computer-vision pipeline to ingest bet-slip images (photos + screenshots), extract structured fields using
-      GPT-4 Vision, and persist validated outputs into an AWS RDS MySQL schema powering analytics, modeling, and reporting. Cut manual data entry
-      by ~15 hours/week and improved data consistency for investor-facing dashboards.
-    </p>
-    <div class="project-stack">
-      <span class="project-tech">Python</span>
-      <span class="project-tech">OCR</span>
-      <span class="project-tech">Computer Vision</span>
-      <span class="project-tech">OpenAI API</span>
-      <span class="project-tech">AWS RDS</span>
-      <span class="project-tech">MySQL</span>
+
+    <div class="project-card reveal">
+      <div class="project-num">08 — Applied AI System</div>
+      <span class="project-badge">GreenAleph Sports · 2024–2025</span>
+      <div class="project-title">Bet Slip OCR Pipeline (GPT Vision + RDS)</div>
+      <p class="project-desc">
+        Engineered an OCR / computer-vision pipeline to ingest bet-slip images (photos + screenshots), extract structured fields using
+        GPT-4 Vision, and persist validated outputs into an AWS RDS MySQL schema powering analytics, modeling, and reporting. Cut manual data entry
+        by ~15 hours/week and improved data consistency for investor-facing dashboards.
+      </p>
+      <div class="project-stack">
+        <span class="project-tech">Python</span>
+        <span class="project-tech">OCR</span>
+        <span class="project-tech">Computer Vision</span>
+        <span class="project-tech">OpenAI API</span>
+        <span class="project-tech">AWS RDS</span>
+        <span class="project-tech">MySQL</span>
+      </div>
     </div>
-  </div>
-  
-  <div class="project-card reveal">
-    <div class="project-num">09 — Quant / Scenario Analysis</div>
-    <span class="project-badge">GreenAleph Sports · 2024–2025</span>
-    <div class="project-title">Playoff Portfolio Scenario Analysis (EV Delta Framework)</div>
-    <p class="project-desc">
-      Deployed a Python scenario-analysis framework to quantify playoff futures portfolio risk across outcome paths. Computed
-      game-level expected value deltas to evaluate how each matchup outcome shifts portfolio EV, supporting hedging and position sizing
-      decisions under bracket-dependent probability updates.
-    </p>
-    <div class="project-stack">
-      <span class="project-tech">Python</span>
-      <span class="project-tech">Simulation</span>
-      <span class="project-tech">Expected Value</span>
-      <span class="project-tech">Bayesian Methods</span>
-      <span class="project-tech">Decision Support</span>
-      <span class="project-tech">Sports Analytics</span>
+
+    <div class="project-card reveal">
+      <div class="project-num">09 — Quant / Scenario Analysis</div>
+      <span class="project-badge">GreenAleph Sports · 2024–2025</span>
+      <div class="project-title">Playoff Portfolio Scenario Analysis (EV Delta Framework)</div>
+      <p class="project-desc">
+        Deployed a Python scenario-analysis framework to quantify playoff futures portfolio risk across outcome paths. Computed
+        game-level expected value deltas to evaluate how each matchup outcome shifts portfolio EV, supporting hedging and position sizing
+        decisions under bracket-dependent probability updates.
+      </p>
+      <div class="project-stack">
+        <span class="project-tech">Python</span>
+        <span class="project-tech">Simulation</span>
+        <span class="project-tech">Expected Value</span>
+        <span class="project-tech">Bayesian Methods</span>
+        <span class="project-tech">Decision Support</span>
+        <span class="project-tech">Sports Analytics</span>
+      </div>
     </div>
-  </div>
-
-
-
-    
 
   </div>
 </section>
@@ -418,10 +435,10 @@
   <h2 class="reveal">Career Experiences</h2>
 
   <div class="exp-card reveal" style="justify-content:center;">
-    <a 
-      href="https://www.linkedin.com/in/acey-vogelstein-04241b1a1/" 
-      target="_blank" 
-      rel="noopener noreferrer" 
+    <a
+      href="https://www.linkedin.com/in/acey-vogelstein-04241b1a1/"
+      target="_blank"
+      rel="noopener noreferrer"
       class="btn btn-primary"
     >
       View LinkedIn
@@ -454,6 +471,7 @@
   const ring = document.getElementById('cursorRing');
   let mx = 0, my = 0, rx = 0, ry = 0;
   document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
   function animateCursor() {
     cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
     rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
@@ -461,6 +479,7 @@
     requestAnimationFrame(animateCursor);
   }
   animateCursor();
+
   document.querySelectorAll('a, button').forEach(el => {
     el.addEventListener('mouseenter', () => { cursor.style.width = '18px'; cursor.style.height = '18px'; ring.style.opacity = '0'; });
     el.addEventListener('mouseleave', () => { cursor.style.width = '10px'; cursor.style.height = '10px'; ring.style.opacity = '0.5'; });
