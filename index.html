@@ -54,8 +54,18 @@
   h2 { font-family: 'Syne', sans-serif; font-size: clamp(2rem,5vw,3.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
   .section-intro { color: var(--muted); font-size: .85rem; line-height: 1.9; max-width: 540px; margin-bottom: 4rem; }
 
+  /* EDUCATION */
+  #about { background: var(--bg2); }
+  .about-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 700px; }
+  .about-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; padding: 1.5rem; transition: border-color .2s, transform .2s; }
+  .about-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .about-card:first-child { grid-column: 1 / -1; }
+  .about-card-label { font-size: .6rem; letter-spacing: .2em; color: var(--muted); text-transform: uppercase; margin-bottom: .5rem; }
+  .about-card-value { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--text); }
+  .about-card-sub { font-size: .7rem; color: var(--muted); margin-top: .3rem; line-height: 1.6; }
+
   /* PROJECTS */
-  #projects { background: var(--bg2); }
+  #projects { background: var(--bg); }
   .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px,1fr)); gap: 1.5rem; }
   .project-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; padding: 2.5rem; position: relative; overflow: hidden; transition: border-color .3s, transform .3s; display: flex; flex-direction: column; }
   .project-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); transform: scaleX(0); transform-origin: left; transition: transform .3s; }
@@ -101,6 +111,7 @@
 <nav>
   <a class="nav-logo" href="#hero">AV_</a>
   <ul class="nav-links">
+    <li><a href="#about">Education</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -117,7 +128,7 @@
     <span class="name-highlight">Vogelstein.</span>
   </h1>
   <p class="hero-sub">
-    MS Data Science @ NYU. I leverage data to optimize and solve real-world challenges. I love experimenting with innovative solutions.
+    MS Data Science @ NYU. I'm driven to optimize and solve real-world challenges by leveraging data. I love experimenting with innovative solutions.
   </p>
   <div class="hero-cta">
     <a href="#projects" class="btn btn-primary">View Projects</a>
@@ -125,11 +136,34 @@
   </div>
 </section>
 
+<!-- EDUCATION -->
+<section id="about">
+  <div class="section-tag reveal">Education</div>
+  <h2 class="reveal">Academic Background</h2>
+  <div class="about-visual reveal">
+    <div class="about-card">
+      <div class="about-card-label">Graduate</div>
+      <div class="about-card-value">MS Data Science</div>
+      <div class="about-card-sub">NYU Center for Data Science, Spring 2026<br>Deep Learning · NLP · LLMs · Reinforcement Learning · Causal Inference · Big Data</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-label">Undergraduate</div>
+      <div class="about-card-value">BA Economics</div>
+      <div class="about-card-sub">University of Pennsylvania, Summa Cum Laude, 2023</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-label">Minor</div>
+      <div class="about-card-value">Statistics</div>
+      <div class="about-card-sub">The Wharton School, 2023</div>
+    </div>
+  </div>
+</section>
+
 <!-- PROJECTS -->
 <section id="projects">
   <div class="section-tag reveal">Projects</div>
   <h2 class="reveal">Selected Work</h2>
-  <p class="section-intro reveal">Research papers and ML/Data Science projects across healthcare AI, NLP, computer vision, and sports analytics.</p>
+  <p class="section-intro reveal">Research papers and ML projects across healthcare AI, NLP, computer vision, and sports analytics.</p>
   <div class="projects-grid">
 
     <div class="project-card reveal">
@@ -233,7 +267,7 @@
     <p class="section-intro" style="margin:1rem auto 0">
       If you're working on interesting problems, I'd love to connect.
     </p>
-    <a href="mailto:vogelsteinacey@gmail.com" class="contact-email">vogelsteinacey@gmail.com</a>
+    <a href="/cdn-cgi/l/email-protection#77011810121b0403121e191614120e37101a161e1b5914181a" class="contact-email"><span class="__cf_email__" data-cfemail="b9cfd6dedcd5cacddcd0d7d8dadcc0f9ded4d8d0d597dad6d4">[email&#160;protected]</span></a>
     <div class="contact-links">
       <a href="https://www.linkedin.com/in/acey-vogelstein-04241b1a1/" target="_blank" class="contact-link">LinkedIn</a>
     </div>
@@ -245,7 +279,7 @@
   <span>acv1229.github.io</span>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
   let mx = 0, my = 0, rx = 0, ry = 0;
@@ -276,10 +310,4 @@
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) current = s.id; });
-    navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : ''; });
-  });
-</script>
-</body>
-</html>
+   
